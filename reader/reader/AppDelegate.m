@@ -17,6 +17,7 @@
 #import "CovenantWorkers.h"
 #import "CovenantNotificationCenter.h"
 #import "API.h"
+#import "APIManager.h"
 
 #import "ViewController.h"
 
@@ -45,31 +46,22 @@
 }
 
 -(void) doTest {
-    NSMutableDictionary *d = [[NSMutableDictionary alloc] init];
-    [d setObject:[[NSMutableArray alloc] init] forKey:@"categories"];
-    [d setObject:[[NSMutableArray alloc] init] forKey:@"meta_categories"];
-    [[d objectForKey:@"categories"] addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"7",@"id", @"3",@"level",
-                                                    @"Romance",@"name", @"1",@"position", nil]];
-    [[d objectForKey:@"categories"] addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"8",@"id", @"3",@"level",
-                                               @"Historical",@"name", @"2",@"position", nil]];
-    [[d objectForKey:@"categories"] addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"9",@"id", @"3",@"level",
-                                               @"Drama",@"name", @"3",@"position", nil]];
-    [[d objectForKey:@"categories"] addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"10",@"id", @"3",@"level",
-                                               @"Inspirational",@"name", @"4",@"position", nil]];
-    [[d objectForKey:@"categories"] addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"11",@"id", @"3",@"level",
-                                               @"Suspense",@"name", @"5",@"position", nil]];
-                                               
-    CatalogManager *cm = [[CatalogManager alloc] initWithDBContext:self.managedObjectContext];
-    if (![cm hasData]) {
-        NSLog(@" ! Exists : ");
-    } else {
-        NSLog(@"Exists : ");
-    }
-    
-    [cm setCategories:d];
-    [cm save];
-    //[API  getBookSummary:d];
-    NSLog(@"Signup Request Made..");
+    notificationCenter = [[CovenantNotificationCenter alloc] init];
+
+    APIManager *apiMgr = [APIManager sharedAPIManager];
+    NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:@"ram",@"name", 
+                                        @"mohan.iitb@gmail.com", @"email",
+                                        @"abc123",@"pwd", 
+                                        @"d3",@"did",
+                                        @"d",@"src", 
+                                        @"23",@"pid",
+                                        @"0b8e8d6ecb546968899e4cfc34406d25",@"sid", //nil]; // 2e259fad7f38aae6c97e8415c7843c61
+                                        @"0",@"repeat", nil];
+
+    //[apiMgr signin:d];
+    [apiMgr getMyBooks:d];
+    //[apiMgr bookPurchased:d];
+    NSLog(@"Req OK...");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
