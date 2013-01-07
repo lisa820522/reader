@@ -16,7 +16,6 @@
 #import "BookPreferenceManager.h"
 #import "CovenantWorkers.h"
 #import "CovenantNotificationCenter.h"
-#import "API.h"
 #import "APIManager.h"
 
 #import "ViewController.h"
