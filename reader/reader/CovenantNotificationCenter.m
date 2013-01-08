@@ -44,6 +44,8 @@
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_GET_CATALOGUE_SEARCH_RESULT_FAILED object:nil];
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_BOOK_PURCHASED_RESULT_OK object:nil];
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_BOOK_PURCHASED_RESULT_FAILED object:nil];
+    [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_OK object:nil];
+    [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_FAILED object:nil];
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_GET_TRANSACTION_HISTORY_RESULT_OK object:nil];
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_GET_TRANSACTION_HISTORY_RESULT_FAILED object:nil];
     [ntCenter addObserver:self selector:@selector(testHandler:) name:COVNOTIFICATION_GET_MY_BOOKS_RESULT_OK object:nil];

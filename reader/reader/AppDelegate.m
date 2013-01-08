@@ -54,12 +54,15 @@
                                         @"d3",@"did",
                                         @"d",@"src", 
                                         @"23",@"pid",
-                                        @"0b8e8d6ecb546968899e4cfc34406d25",@"sid", //nil]; // 2e259fad7f38aae6c97e8415c7843c61
-                                        @"0",@"repeat", nil];
+                                        @"81236acf88ecfbe285c0542abc7713d6",@"sid", //nil]; // 2e259fad7f38aae6c97e8415c7843c61
+                                        @"0",@"repeat", 
+                                        @"122", @"bid", nil];
 
     //[apiMgr signin:d];
-    [apiMgr getMyBooks:d];
+    //[apiMgr getMyBooks:d];
+    //[apiMgr getAccountInfo:d];
     //[apiMgr bookPurchased:d];
+    [apiMgr downloadBook:d];
     NSLog(@"Req OK...");
 }
 

@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "reader/CovenantNotificationCenter.m"
-         timestampString = "379260720.476652"
+         timestampString = "379333830.18422"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "58"
-         endingLineNumber = "58"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
          landmarkName = "-testHandler:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -66,6 +66,19 @@
          startingLineNumber = "51"
          endingLineNumber = "51"
          landmarkName = "-doTest"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "reader/APIManager.m"
+         timestampString = "379318610.418601"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "547"
+         endingLineNumber = "547"
+         landmarkName = "-bookPurchased:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -651,8 +651,35 @@ NSString *NAPI_SERVER = @"http://54.235.196.12/japi";
 /**/
 -(void) downloadBook:(NSDictionary *) userData {
     dispatch_block_t block = ^{
-        // TODO: implementation
-        ;
+        NSString *url = [NSString stringWithFormat:@"%@/book/download", NAPI_SERVER];
+        
+        NSArray *fields = [NSArray arrayWithObjects:@"src",@"sid",@"did",@"bid", nil];
+        for(NSString *fld in fields) {
+            if (![userData objectForKey:fld]) {
+                NSDictionary *errResp = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0],@"ec",
+                                         fld,@"em", nil];
+                NSNotification *notificaiton = [NSNotification notificationWithName:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_FAILED
+                                                                             object:nil
+                                                                           userInfo:errResp];
+                [[NSNotificationCenter defaultCenter] postNotificationOnMainThread:notificaiton waitUntilDone:NO];
+                return; 
+            }
+        }
+        
+        NSDictionary *result = (NSDictionary *)[self sendPostRequestTo:url withData:[self urlEscapedPostData:userData] ];
+        if (!result) {
+            NSNotification *notification = [NSNotification notificationWithName:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_FAILED
+                                                                         object:nil userInfo:[self defaultServerResponse]];
+            [[NSNotificationCenter defaultCenter] postNotificationOnMainThread:notification waitUntilDone:NO];
+        } else {
+            if ([[result objectForKey:@"s"] intValue] == 0) {
+                NSNotification *notification = [NSNotification notificationWithName:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_FAILED object:nil userInfo:[result objectForKey:@"d"]];
+                [[NSNotificationCenter defaultCenter] postNotificationOnMainThread:notification waitUntilDone:NO];
+            } else {
+                NSNotification *notification = [NSNotification notificationWithName:COVNOTIFICATION_DOWNLOAD_BOOK_RESULT_OK object:nil userInfo:[result objectForKey:@"d"]];
+                [[NSNotificationCenter defaultCenter] postNotificationOnMainThread:notification waitUntilDone:NO];
+            }
+        }
     };
     
     if (dispatch_get_current_queue() == apiQueue) {
